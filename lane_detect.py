@@ -14,7 +14,7 @@ while(True):
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
     res = cv2.bitwise_and(frame,frame, mask= mask)
 
-    cv2.imshow('mask', hsv)
+    cv2.imshow('res', hsv)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
