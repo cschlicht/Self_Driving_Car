@@ -11,7 +11,7 @@ while(True):
 	cv2.imshow('frame', hsv)
 	lower_blue = np.array([60,40,40])
 	upper_blue = np.array([150, 255, 255])
-	mask = cv2.inRnage(hsv, lower_blue, upper_blue)
+	mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
 	if cv2.waitKey(1) & 0xFF == ord('q'):
 		break
