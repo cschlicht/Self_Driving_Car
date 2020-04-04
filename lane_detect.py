@@ -46,8 +46,46 @@ def Detect_line_segment(cropped_edges):
 	max_line_gap = 4 
 	line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), min_line_length, max_line_gap)
 	
-	print (line_segments)
+	
 	return line_segments
+
+
+
+def Avg_slope(line_segments,cap):
+    #if slope is > 0 then on left
+    #if slope is < 0 on the right 
+
+    ret, frame = cap.read()
+    height, width = np.shape(frame)
+    right_fit = []
+    left_fit = []
+    lane_lines = []
+
+    if line_segments is None:
+        return 'no line seg'
+
+    bound = 1/3
+
+    left_boundary = width*(1 -bound)
+    right_boundary =  width*bound
+
+    for line_segment in line_segments:
+        for x1,y1,x2,y2 in line_segment:
+            if (x1 = x2):
+                print ('UND')
+                continue 
+
+            fit = np.polyfit((x1,x2),(y1,y2),1)
+            slope = fit[0]
+            intercept = fit[1]
+
+            if slope < 0:
+                if x1 < left_boundary and x2 < left_boundary:
+                    left_fit.append((slope,intercept))
+            else:
+                if x1 > right_boundary and x2 > right_boundary:
+                    right_fit.append((slope,intercept))
+            
 
 
 
