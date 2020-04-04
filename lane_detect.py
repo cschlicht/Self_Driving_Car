@@ -32,7 +32,7 @@ def detect_lane():
 
     
 def Cut_top_half(edges):
-    height, width = np.shape(edges)
+    height, width,_ = np.shape(edges)
     mask = np.zeros_like(edges)
 
 
@@ -65,7 +65,7 @@ def Avg_slope(line_segments,cap):
     #if slope is < 0 on the right 
 
     ret, frame = cap.read()
-    height, width = np.shape(frame)
+    height, width,_ = np.shape(frame)
     right_fit = []
     left_fit = []
     lane_lines = []
