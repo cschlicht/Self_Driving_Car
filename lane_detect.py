@@ -24,7 +24,8 @@ def main():
 
 def Cut_top_half(edges):
     height, width = np.shape(edges)
-    mask = np.zereos_like(edges)
+    mask = np.zeros_like(edges)
+
 
     #delete top hald of screen 
     poly = np.arrray ([[(0,height*1/2),(width,height*1/2),(width,height),(0,height)]],np.int32)
