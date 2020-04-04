@@ -15,9 +15,9 @@ import cv2
 ##was main but changed 
 
 
-
+cap = cv2.VideoCapture(0)
 def detect_lane():
-    cap = cv2.VideoCapture(0)
+    
     while (True):
         
         edges = Detect_Edges(cap)
