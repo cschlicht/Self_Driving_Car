@@ -10,16 +10,16 @@ import cv2
 def main():
     while (True):
         cap = cv2.VideoCapture(0)
-        Detect_Edges()
+        Detect_Edges(cap)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-cap.release()
-cv2.destroyAllWindows()
+    cap.release()
+    cv2.destroyAllWindows()
 
 
-def Detect_Edges():
+def Detect_Edges(cap):
 
     ret, frame = cap.read()
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
