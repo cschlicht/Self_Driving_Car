@@ -11,7 +11,10 @@ def main():
     cap = cv2.VideoCapture(0)
     while (True):
         
-        Detect_Edges(cap)
+        edges = Detect_Edges(cap)
+        cropped_edges = cut_top_half(edges)
+        Detect_line_segment(cropped_edges)
+
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -34,7 +37,7 @@ def Cut_top_half(edges):
 
     return cropped_edges
 
-def Detect_line_segment():
+def Detect_line_segment(cropped_edges):
 	rho = 1 #distance precision in pixel
 	angle = np.pi / 180 
 	min_threshold = 10 
