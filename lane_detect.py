@@ -105,7 +105,7 @@ def Avg_slope(line_segments,cap):
     return lane_lines
 
 def Make_points(frame,line):
-    height, width = np.shape(frame)
+    height, width,_ = np.shape(frame)
     slope, intercept = line
     y1 = height 
     y2 = int(y1*1/2)
