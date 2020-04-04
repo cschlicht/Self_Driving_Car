@@ -19,6 +19,9 @@ def main():
     cap.release()
     cv2.destroyAllWindows()
 
+#def Cut_top_half(edges):
+
+
 
 def Detect_Edges(cap):
 
@@ -33,6 +36,7 @@ def Detect_Edges(cap):
     cv2.imshow('mask',mask)
 
     edges = cv2.Canny(mask, 200, 400)
+    print (edges)
 
     return edges
 
