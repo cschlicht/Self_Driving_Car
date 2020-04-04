@@ -3,25 +3,50 @@ import cv2
 
 
 
-
     
 
        
-def main():
+#def main():
+#if cv2.waitKey(1) & 0xFF == ord('q'):
+            #cap.release()
+            #cv2.destroyAllWindows()
+            #break
+
+##was main but changed 
+
+
+
+def detect_lane():
     cap = cv2.VideoCapture(0)
     while (True):
         
         edges = Detect_Edges(cap)
         cropped_edges = Cut_top_half(edges)
-        Detect_line_segment(cropped_edges)
+        line_segments =Detect_line_segment(cropped_edges)
+        lane_lines =  Avg_slope(line_segments,cap)
+
+        return lane_lines
 
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+        
+def display_lanes(cap,lines,line_color=(0, 255, 0), line_width=2):
+    ret, frame = cap.read()
+    line_image = np.zeros_like(frame)
+    line_color = (0, 255, 0)
+    line_width = 3
 
-    cap.release()
-    cv2.destroyAllWindows()
+    if lines is not None:
+        for line in lines:
+            for x1,y1,x2,y2 in line:
+                cv2.line(line_image, (x1,y1),(x2,y2),line_color,line_width)
 
+    #addweight() blends two images 
+    line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
+    return line_image
+    
+lane_lines_image = display_lines(frame, lane_lines)
+cv2.imshow("lane lines", lane_lines_image)
+    
 def Cut_top_half(edges):
     height, width = np.shape(edges)
     mask = np.zeros_like(edges)
@@ -85,7 +110,26 @@ def Avg_slope(line_segments,cap):
             else:
                 if x1 > right_boundary and x2 > right_boundary:
                     right_fit.append((slope,intercept))
-            
+
+    left_fit_avg = np.average(left_fit,axis =0)
+    if len(left_fit) > 0:
+        lane_lines.append(Make_points(frame,left_fit_avg))
+    right_fit_avg = np.average(right_fit,axis=0)
+    if len(right_fit) > 0:
+        lane_lines.append(Make_points(frame,right_fit_avg))
+
+    return lane_lines
+
+def Make_points(frame,line):
+    height, width = np.shape(frame)
+    slope, intercept = line
+    y1 = height 
+    y2 = int(y1*1/2)
+
+    # bound the coordinates within the frame
+    x1 = max(-width, min(2 * width, int((y1 - intercept) / slope)))
+    x2 = max(-width, min(2 * width, int((y2 - intercept) / slope)))
+    return [[x1, y1, x2, y2]]
 
 
 
