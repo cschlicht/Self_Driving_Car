@@ -156,8 +156,8 @@ lane_lines_image = display_lines(cap, detect_lane())
 cv2.imshow("lane lines", lane_lines_image)
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+    #main()
 
 
 
