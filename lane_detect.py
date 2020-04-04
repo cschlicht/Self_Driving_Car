@@ -32,7 +32,7 @@ def detect_lane():
 
     
 def Cut_top_half(edges):
-    height, width,_ = np.shape(edges)
+    height, width = np.shape(edges)
     mask = np.zeros_like(edges)
 
 
