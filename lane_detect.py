@@ -43,7 +43,7 @@ def display_lanes(cap,lines,line_color=(0, 255, 0), line_width=2):
     #addweight() blends two images 
     line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
     return line_image
-    
+
 lane_lines_image = display_lines(frame, lane_lines)
 cv2.imshow("lane lines", lane_lines_image)
     
@@ -96,7 +96,7 @@ def Avg_slope(line_segments,cap):
 
     for line_segment in line_segments:
         for x1,y1,x2,y2 in line_segment:
-            if (x1 = x2):
+            if (x1 == x2):
                 print ('UND')
                 continue 
 
