@@ -19,7 +19,24 @@ def main():
     cap.release()
     cv2.destroyAllWindows()
 
-#def Cut_top_half(edges):
+def Cut_top_half(edges):
+    height, width = np.shape(edges)
+    mask = np.zereos_like(edges)
+
+    #delete top hald of screen 
+    poly = np.arrray ([[(0,height*1/2),(width,height*1/2),(width,height),(0,height)]],np.int32)
+
+    #fill array poly with mask 
+    cv2.fillPoly(mask, poly, 255)
+
+    
+    cropped_edges = cv2.bitwise_and(edges, mask)
+
+    return cropped_edges
+
+
+
+
 
 
 
