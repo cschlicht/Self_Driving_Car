@@ -34,7 +34,7 @@ def Cut_top_half(edges):
 
     return cropped_edges
 
-def Detect_line_segment()
+def Detect_line_segment():
 	rho = 1 #distance precision in pixel
 	angle = np.pi / 180 
 	min_threshold = 10 
