@@ -29,11 +29,10 @@ def detect_lane():
 
 
         
-def display_lanes(cap,lines,line_color=(0, 255, 0), line_width=2):
+def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     ret, frame = cap.read()
     line_image = np.zeros_like(frame)
-    line_color = (0, 255, 0)
-    line_width = 3
+    
 
     if lines is not None:
         for line in lines:
@@ -44,7 +43,7 @@ def display_lanes(cap,lines,line_color=(0, 255, 0), line_width=2):
     line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
     return line_image
 
-lane_lines_image = display_lines(frame, lane_lines)
+lane_lines_image = display_lines(cap, lane_lines)
 cv2.imshow("lane lines", lane_lines_image)
     
 def Cut_top_half(edges):
