@@ -12,7 +12,7 @@ def main():
     while (True):
         
         edges = Detect_Edges(cap)
-        cropped_edges = cut_top_half(edges)
+        cropped_edges = Cut_top_half(edges)
         Detect_line_segment(cropped_edges)
 
 
