@@ -18,14 +18,13 @@ def detect_lane():
     
     
 
-    while (True):
         
-        edges = Detect_Edges(cap)
-        cropped_edges = Cut_top_half(edges)
-        line_segments =Detect_line_segment(cropped_edges)
-        lane_lines =  Avg_slope(line_segments,cap)
+    edges = Detect_Edges(cap)
+    cropped_edges = Cut_top_half(edges)
+    line_segments =Detect_line_segment(cropped_edges)
+    lane_lines =  Avg_slope(line_segments,cap)
 
-        return lane_lines
+    return lane_lines
 
 
         
@@ -152,7 +151,7 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
 
     return line_image
-cap = cv2.VideoCapture(0)
+
 while (True):
 
     lane_lines_image = display_lines(cap, detect_lane())
