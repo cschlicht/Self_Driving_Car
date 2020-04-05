@@ -14,10 +14,10 @@ import cv2
 
 ##was main but changed 
 
-
-cap = cv2.VideoCapture(0)
 def detect_lane():
     
+    cap = cv2.VideoCapture(0)
+
     while (True):
         
         edges = Detect_Edges(cap)
@@ -154,7 +154,7 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     return line_image
 
 lane_lines_image = display_lines(cap, detect_lane())
-cv2.imshow("lane lines", lane_lines_image)
+    cv2.imshow("lane lines", lane_lines_image)
 
 
 #if __name__ == "__main__":
