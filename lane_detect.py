@@ -16,7 +16,7 @@ import cv2
 
 def detect_lane():
     
-    cap = cv2.VideoCapture(0)
+    
 
     while (True):
         
@@ -152,7 +152,7 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
 
     return line_image
-
+cap = cv2.VideoCapture(0)
 lane_lines_image = display_lines(cap, detect_lane())
 cv2.imshow("lane lines", lane_lines_image)
 
