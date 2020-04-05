@@ -80,7 +80,6 @@ def Avg_slope(line_segments,cap):
 
     for line_segment in line_segments:
         for x1,y1,x2,y2 in line_segment:
-            print(x1,x2)
             if (x1 == x2):
                 print ('UND')
                 continue 
@@ -154,8 +153,10 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
 
     return line_image
 cap = cv2.VideoCapture(0)
-lane_lines_image = display_lines(cap, detect_lane())
-cv2.imshow("lane lines", lane_lines_image)
+while (True):
+
+    lane_lines_image = display_lines(cap, detect_lane())
+    cv2.imshow("lane lines", lane_lines_image)
 
 
 #if __name__ == "__main__":
