@@ -151,7 +151,7 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
 
     return line_image
-
+cap = cv2.VideoCapture(0)
 while (True):
 
     lane_lines_image = display_lines(cap, detect_lane())
