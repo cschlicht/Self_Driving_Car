@@ -80,6 +80,7 @@ def Avg_slope(line_segments,cap):
 
     for line_segment in line_segments:
         for x1,y1,x2,y2 in line_segment:
+            print(x1,x2)
             if (x1 == x2):
                 print ('UND')
                 continue 
