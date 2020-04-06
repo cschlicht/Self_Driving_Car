@@ -7,16 +7,16 @@ import cv2
 
        
 #def main():
-#if cv2.waitKey(1) & 0xFF == ord('q'):
-            #cap.release()
-            #cv2.destroyAllWindows()
-            #break
+if cv2.waitKey(1) & 0xFF == ord('q'):
+    cap.release()
+    cv2.destroyAllWindows()
+    break
 
 ##was main but changed 
 
 def detect_lane():
     
-    
+
 
         
     edges = Detect_Edges(cap)
@@ -156,7 +156,9 @@ while (True):
 
     lane_lines_image = display_lines(cap, detect_lane())
     cv2.imshow("lane lines", lane_lines_image)
-
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        cap.release()
+        cv2.destroyAllWindows()
 
 #if __name__ == "__main__":
     #main()
