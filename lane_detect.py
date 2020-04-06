@@ -7,10 +7,7 @@ import cv2
 
        
 #def main():
-if cv2.waitKey(1) & 0xFF == ord('q'):
-    cap.release()
-    cv2.destroyAllWindows()
-    break
+
 
 ##was main but changed 
 
