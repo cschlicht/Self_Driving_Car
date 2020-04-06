@@ -41,6 +41,9 @@ def Cut_top_half(edges):
 
     
     cropped_edges = cv2.bitwise_and(edges, mask)
+    cv2.imshow("cuttophalf",cropped_edges)
+    CV2.waitKey(0)
+
 
 
     return cropped_edges
