@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+import matplotlib.pyplot as plt 
 
 
 
@@ -40,6 +41,7 @@ def Cut_top_half(edges):
 
     
     cropped_edges = cv2.bitwise_and(edges, mask)
+
 
     return cropped_edges
 
@@ -129,8 +131,8 @@ def Detect_Edges(cap):
     cv2.imshow('mask',mask)
 
     edges = cv2.Canny(mask, 200, 400)
-    cv2.imshow("canny",edges)
-    cv2.waitKey(0)
+    plt.imshow(edges)
+    plt.show(0)
     
 
     return edges
