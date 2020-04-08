@@ -42,7 +42,7 @@ def Cut_top_half(edges):
     
     cropped_edges = cv2.bitwise_and(edges, mask)
     cv2.imshow("cuttophalf",cropped_edges)
-    CV2.waitKey(0)
+    cv2.waitKey(0)
 
 
 
@@ -51,9 +51,9 @@ def Cut_top_half(edges):
 def Detect_line_segment(cropped_edges):
 	rho = 1 #distance precision in pixel
 	angle = np.pi / 180 
-	min_threshold = 10 
-	min_line_length = 8
-	max_line_gap = 4 
+	min_threshold = 100 
+	min_line_length = 40
+	max_line_gap = 5 
 	line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), min_line_length, max_line_gap)
 	
 	
@@ -81,6 +81,7 @@ def Avg_slope(line_segments,cap):
 
     for line_segment in line_segments:
         for x1,y1,x2,y2 in line_segment:
+            print (x1,x2)
             if (x1 == x2):
                 print ('UND')
                 continue 
@@ -134,8 +135,7 @@ def Detect_Edges(cap):
     cv2.imshow('mask',mask)
 
     edges = cv2.Canny(mask, 200, 400)
-    plt.imshow(edges)
-    plt.show(0)
+    
     
 
     return edges
@@ -155,6 +155,7 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
 
     return line_image
+
 cap = cv2.VideoCapture(0)
 while (True):
 
