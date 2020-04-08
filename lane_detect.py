@@ -55,6 +55,7 @@ def Detect_line_segment(cropped_edges):
     max_line_gap = 5 
     line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), min_line_length, max_line_gap)
     
+    print(line_segments)
          
     return line_segments
 
@@ -143,9 +144,9 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     ret, frame = cap.read()
     line_image = np.zeros_like(frame)
     
-    if lines is not None:
-        for line in lines:
-            print(line)
+    #if lines is not None:
+        #for line in lines:
+            #print(line)
             #for x1,y1,x2,y2 in line:
                 #cv2.line(line_image, (x1,y1),(x2,y2),line_color,line_width)
 
