@@ -143,10 +143,11 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     ret, frame = cap.read()
     line_image = np.zeros_like(frame)
     
-    x1,y1,x2,y2 = lane.reshape(4)
+    
 
     if lines is not None:
         for line in lines:
+            x1,y1,x2,y2 = line.reshape(4)
             for x1,y1,x2,y2 in line:
                 cv2.line(line_image, (x1,y1),(x2,y2),line_color,line_width)
 
