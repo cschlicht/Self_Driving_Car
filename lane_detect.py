@@ -70,7 +70,7 @@ def Avg_slope(line_segments,cap):
     right_fit = []
     left_fit = []
     lane_lines = []
-    print(line_segments)
+
     if line_segments is None:
         return 'no line seg'
 
@@ -80,6 +80,7 @@ def Avg_slope(line_segments,cap):
     right_boundary =  width*bound
 
     for line_segment in line_segments:
+        x1,y1,x2,y2 = line_segment.reshape(4)
         for x1,y1,x2,y2 in line_segment:
             if (x1 == x2):
                 print ('UND')
