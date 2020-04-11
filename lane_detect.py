@@ -82,7 +82,6 @@ def Avg_slope(line_segments,cap):
     for line_segment in line_segments:
         x1,y1,x2,y2 = line_segment.reshape(4)
         fit = np.polyfit((x1,x2),(y1,y2),1)
-        print(fit)
         slope = fit[0]
         intercept = fit[1]
 
