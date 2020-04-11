@@ -19,7 +19,7 @@ def detect_lane(frame):
     edges = Detect_Edges(frame)
     cropped_edges = Cut_top_half(edges)
     line_segments =Detect_line_segment(cropped_edges)
-    lane_lines =  Avg_slope(line_segments,cap)
+    lane_lines =  Avg_slope(line_segments,frame)
 
     return lane_lines
 
