@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt 
+import warnings 
 
 
 
@@ -12,6 +13,7 @@ import matplotlib.pyplot as plt
 
 ##was main but changed 
 
+cap = cv2.VideoCapture(0)
 def detect_lane():
     
 
@@ -154,9 +156,8 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
 
     return line_image
 
-cap = cv2.VideoCapture(0)
 while (True):
-
+    warnings.simplefilter('ignore', np.RankWarning)
     lane_lines_image = display_lines(cap, detect_lane())
     cv2.imshow("lane lines", lane_lines_image)
     if cv2.waitKey(1) & 0xFF == ord('q'):
