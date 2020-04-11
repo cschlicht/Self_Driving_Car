@@ -155,7 +155,7 @@ cap = cv2.VideoCapture(0)
 while(cap.isOpened()):
     _,frame = cap.read()
     warnings.simplefilter('ignore', np.RankWarning)
-    lane_lines_image = display_lines(frame, detect_lane())
+    lane_lines_image = display_lines(frame, detect_lane(frame))
     cv2.imshow("lane lines", lane_lines_image)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         cap.release()
