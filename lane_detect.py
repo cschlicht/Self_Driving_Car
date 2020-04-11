@@ -13,13 +13,10 @@ import warnings
 
 ##was main but changed 
 
-cap = cv2.VideoCapture(0)
-def detect_lane():
+
+def detect_lane(frame):
     
-
-
-        
-    edges = Detect_Edges(cap)
+    edges = Detect_Edges(frame)
     cropped_edges = Cut_top_half(edges)
     line_segments =Detect_line_segment(cropped_edges)
     lane_lines =  Avg_slope(line_segments,cap)
@@ -63,11 +60,10 @@ def Detect_line_segment(cropped_edges):
 
 
 
-def Avg_slope(line_segments,cap):
+def Avg_slope(line_segments,frame):
     #if slope is > 0 then on left
     #if slope is < 0 on the right 
 
-    ret, frame = cap.read()
     height, width,_ = np.shape(frame)
     right_fit = []
     left_fit = []
@@ -123,9 +119,8 @@ def Make_points(frame,line_parameters):
 
 
 
-def Detect_Edges(cap):
+def Detect_Edges(frame):
 
-    ret, frame = cap.read()
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
     
@@ -142,8 +137,7 @@ def Detect_Edges(cap):
     return edges
 
 
-def display_lines(cap,lines,line_color=(0, 255, 0), line_width=10):
-    ret, frame = cap.read()
+def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
     line_image = np.zeros_like(frame)
     
     if lines is not None:
@@ -157,10 +151,11 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=10):
     return line_image
 
     
-
-while(1):
+cap = cv2.VideoCapture(0)
+while(cap.isOpened()):
+    _,frame = cap.read()
     warnings.simplefilter('ignore', np.RankWarning)
-    lane_lines_image = display_lines(cap, detect_lane())
+    lane_lines_image = display_lines(frame, detect_lane())
     cv2.imshow("lane lines", lane_lines_image)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         cap.release()
