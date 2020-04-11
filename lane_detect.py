@@ -81,41 +81,41 @@ def Avg_slope(line_segments,cap):
 
     for line_segment in line_segments:
         x1,y1,x2,y2 = line_segment.reshape(4)
-        for x1,y1,x2,y2 in line_segment:
-            if (x1 == x2):
-                print ('UND')
-                continue 
+        fit = np.polyfit((x1,x2),(y1,y2),1)
+        print(fit)
+        slope = fit[0]
+        intercept = fit[1]
 
-            fit = np.polyfit((x1,x2),(y1,y2),1)
-            slope = fit[0]
-            intercept = fit[1]
+        #lines on left postive slope 
+        #lines on right have positive slope
 
-            if slope < 0:
-                if x1 < left_boundary and x2 < left_boundary:
-                    left_fit.append((slope,intercept))
-            else:
-                if x1 > right_boundary and x2 > right_boundary:
-                    right_fit.append((slope,intercept))
+        if slope < 0:
+            if x1 < left_boundary and x2 < left_boundary:
+                left_fit.append((slope,intercept))
+        else:
+            if x1 > right_boundary and x2 > right_boundary:
+                right_fit.append((slope,intercept))
 
     left_fit_avg = np.average(left_fit,axis =0)
     if len(left_fit) > 0:
         lane_lines.append(Make_points(frame,left_fit_avg))
+
     right_fit_avg = np.average(right_fit,axis=0)
     if len(right_fit) > 0:
         lane_lines.append(Make_points(frame,right_fit_avg))
 
     return lane_lines
 
-def Make_points(frame,line):
+def Make_points(frame,line_parameters):
     height, width, _ = np.shape(frame)
-    slope, intercept = line
+    slope, intercept = line_parameters
     y1 = height 
-    y2 = int(y1*1/2)
+    y2 = int(y1*(3/5))
 
     # bound the coordinates within the frame
-    x1 = max(-width, min(2 * width, int((y1 - intercept) / slope)))
-    x2 = max(-width, min(2 * width, int((y2 - intercept) / slope)))
-    return [[x1, y1, x2, y2]]
+    x1 = int((y1 - intercept) / slope)
+    x2 = int((y2 - intercept) / slope)
+    return np.array ([x1,y1,x2,y2])
 
 
 
@@ -132,7 +132,7 @@ def Detect_Edges(cap):
     upper_blue = np.array([150, 255, 255])
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
     
-    cv2.imshow('mask',mask)
+    #cv2.imshow('mask',mask)
 
     edges = cv2.Canny(mask, 200, 400)
     
@@ -146,8 +146,7 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     line_image = np.zeros_like(frame)
     
     if lines is not None:
-        for line in lines:
-            print(line)
+        for line in lines:  
             for x1,y1,x2,y2 in line:
                 cv2.line(line_image, (x1,y1),(x2,y2),line_color,line_width)
 
