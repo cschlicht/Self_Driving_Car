@@ -54,7 +54,7 @@ def Detect_line_segment(cropped_edges):
     max_line_gap = 5 
     line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), min_line_length, max_line_gap)
     
-    
+    print(line_segments)
          
     return line_segments
 
