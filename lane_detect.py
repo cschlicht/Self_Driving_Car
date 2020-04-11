@@ -164,7 +164,7 @@ while(cap.isOpened()):
     lane_lines_image = display_lines(frame,lane_lines)
 
     cv2.imshow("lane lines", lane_lines_image)
-    cv2.imshow("Canny",edges)
+    cv2.imshow("Canny",cropped_edges)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         cap.release()
         cv2.destroyAllWindows()
