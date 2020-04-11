@@ -156,7 +156,7 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=10):
 
     return line_image
 
-while (True):
+
     warnings.simplefilter('ignore', np.RankWarning)
     lane_lines_image = display_lines(cap, detect_lane())
     cv2.imshow("lane lines", lane_lines_image)
