@@ -103,7 +103,7 @@ def Avg_slope(line_segments,cap):
     right_fit_avg = np.average(right_fit,axis=0)
     if len(right_fit) > 0:
         lane_lines.append(Make_points(frame,right_fit_avg))
-
+    print(lane_lines)
     return lane_lines
 
 def Make_points(frame,line_parameters):
