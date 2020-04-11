@@ -159,8 +159,9 @@ while(cap.isOpened()):
     cropped_edges = Cut_top_half(edges)
     line_segments =Detect_line_segment(cropped_edges)
     lane_lines =  Avg_slope(line_segments,frame)
+    lane_lines_image = display_lines(frame,lane_lines)
     
-    cv2.imshow("lane lines", lane_lines)
+    cv2.imshow("lane lines", lane_lines_image)
     cv2.imshow("Canny",edges)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         cap.release()
