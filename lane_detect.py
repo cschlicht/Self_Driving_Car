@@ -156,13 +156,13 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=10):
 
     return line_image
 
-
-    warnings.simplefilter('ignore', np.RankWarning)
-    lane_lines_image = display_lines(cap, detect_lane())
-    cv2.imshow("lane lines", lane_lines_image)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        cap.release()
-        cv2.destroyAllWindows()
+    for n in 10:
+        warnings.simplefilter('ignore', np.RankWarning)
+        lane_lines_image = display_lines(cap, detect_lane())
+        cv2.imshow("lane lines", lane_lines_image)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            cap.release()
+            cv2.destroyAllWindows()
 
 #if __name__ == "__main__":
     #main()
