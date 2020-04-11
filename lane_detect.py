@@ -146,7 +146,8 @@ def display_lines(cap,lines,line_color=(0, 255, 0), line_width=2):
     line_image = np.zeros_like(frame)
     
     if lines is not None:
-        for line in lines:  
+        for line in lines:
+            x1,y1,x2,y2 = line.reshape(4)  
             cv2.line(line_image, (x1,y1),(x2,y2),line_color,line_width)
 
     #addweight() blends two images 
