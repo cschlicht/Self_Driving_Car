@@ -147,7 +147,7 @@ def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
             cv2.line(line_image, (x1,y1),(x2,y2),line_color,line_width)
 
     #addweight() blends two images 
-    #line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
+    line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
 
     return line_image
 
@@ -156,7 +156,7 @@ cap = cv2.VideoCapture(0)
 while(cap.isOpened()):
     _,frame = cap.read()
     warnings.simplefilter('ignore', np.RankWarning)
-    frame = cv2.GaussianBlur(frame, (5, 5), 0)
+    #frame = cv2.GaussianBlur(frame, (5, 5), 0)
     edges = Detect_Edges(frame)
     cropped_edges = Cut_top_half(edges)
     line_segments =Detect_line_segment(cropped_edges)
