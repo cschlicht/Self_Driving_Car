@@ -167,11 +167,13 @@ def detect_two_lines(frame, lane_lines):
     angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)
     steering_angle = angle_to_mid_deg + 90
 
+    print(steering_angle)
+
     return steering_angle
 
 def detect_one_line(frame,lane_lines):
     x1,_,x2,_ = lane_lines[0][0]
-    print()
+    
 
 def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5):
 	heading_image = np.zeros_like(frame)
