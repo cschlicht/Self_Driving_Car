@@ -163,7 +163,7 @@ def detect_two_lines(frame, lane_lines):
     xoffset = right_x2 - left_x2
     yoffset = (height)/2
 
-    angle_to_mid_radian = math.atan(x_offset / y_offset)
+    angle_to_mid_radian = math.atan(xoffset / yoffset)
     angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)
     steering_angle = angle_to_mid_deg + 90
 
