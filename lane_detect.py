@@ -178,7 +178,7 @@ def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_widt
 	height, width, _  = np.shape(frame)
 
 
-	stering_angle_radian = steering_angle/180.0 * math.pi
+	steering_angle_radian = steering_angle/180.0 * math.pi
 	x1 = int(width / 2)
 	y1 = height
 	x2 = int(x1 - height / 2 / math.tan(steering_angle_radian))
