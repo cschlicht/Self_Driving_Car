@@ -51,7 +51,7 @@ def Cut_top_half(edges):
 def Detect_line_segment(cropped_edges):
     rho = 1 #distance precision in pixel
     angle = np.pi / 180 
-    min_threshold = 40 
+    min_threshold = 20 
     min_line_length = 25
     max_line_gap = 5
     line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), min_line_length, max_line_gap)
