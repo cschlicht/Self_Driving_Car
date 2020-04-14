@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt 
 import warnings 
+import time
 
 
 
@@ -155,7 +156,7 @@ def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
 cap = cv2.VideoCapture(0)
 while(cap.isOpened()):
     _,frame = cap.read()
-    delay(1)
+    time.sleep(1)
     warnings.simplefilter('ignore', np.RankWarning)
     frame = cv2.GaussianBlur(frame, (5, 5), 0)
     edges = Detect_Edges(frame)
