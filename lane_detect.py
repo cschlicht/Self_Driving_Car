@@ -162,10 +162,31 @@ def detect_two_lines(frame, lane_lines):
     xoffset = right_x2 - left_x2
     yoffset = (height)/2
 
+    angle_to_mid_radian = math.atan(x_offset / y_offset)
+    angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)
+    steering_angle = angle_to_mid_deg + 90
+
+    return steering_angle
+
 def detect_one_line(frame,lane_lines):
     x1,_,x2,_ = lane_lines[0][0]
     print()
 
+def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5):
+	heading_image = np.zeros_like(frame)
+	height, width, _  = frame.frame.shape
+
+
+	stering_angle_radian = steering_angle/180.0 * math.pi
+	x1 = int(width / 2)
+	y1 = height
+	x2 = int(x1 - height / 2 / math.tan(steering_angle_radian))
+	y2 = int(height / 2)
+
+	cv2.line(heading_image, (x1, y1), (x2, y2), line_color, line_width)
+	heading_image = cv2.addWeighted(frame, 0.8, heading_image, 1, 1)
+
+	return heading_image
 
 
     
