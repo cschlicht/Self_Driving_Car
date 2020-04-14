@@ -154,8 +154,8 @@ def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
 
 def detect_two_lines(frame, lane_lines):
     height, width, _ = np.shape(frame)
-    _,_,left_x2,_ = lane_lines[0][0]
-    _,_,right_x2,_ = lane_lines[1][0]
+    _,_,left_x2,_ = lane_lines[0]
+    _,_,right_x2,_ = lane_lines[1]
 
     print(left_x2,right_x2)
 
@@ -174,7 +174,7 @@ def detect_one_line(frame,lane_lines):
 
 def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5):
 	heading_image = np.zeros_like(frame)
-	height, width, _  = frame.frame.shape
+	height, width, _  = np.shape(frame)
 
 
 	stering_angle_radian = steering_angle/180.0 * math.pi
