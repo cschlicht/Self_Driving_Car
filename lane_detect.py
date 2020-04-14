@@ -33,10 +33,10 @@ def Cut_top_half(edges):
 
 
     #delete top hald of screen 
-    poly = np.array ([[(0,height*1/2),(width,height*1/2),(width,height),(0,height)]],np.int32)
+    #poly = np.array ([[(0,height*1/2),(width,height*1/2),(width,height),(0,height)]],np.int32)
 
     #fill array poly with mask 
-    cv2.fillPoly(mask, poly, 255)
+    #cv2.fillPoly(mask, poly, 255)
 
     
     cropped_edges = cv2.bitwise_and(edges, mask)
