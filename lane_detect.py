@@ -155,8 +155,8 @@ def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
 
 def detect_two_lines(frame, lane_lines):
     height, width, _ = np.shape(frame)
-    _,_,left_x2,_ = lane_lines[0][0]
-    _,_,right_x2,_ = lane_lines[1][0]
+    _,_,left_x2,_ = lane_lines[0]
+    _,_,right_x2,_ = lane_lines[1]
 
     print(left_x2,right_x2)
 
