@@ -152,6 +152,22 @@ def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
 
     return line_image
 
+def detect_two_lines(frame, lane_lines):
+    height, width, _ = np.shape(frame)
+    _,_,left_x2,_ = lane_lines[0][0]
+    _,_,right_x2,_ = lane_lines[1][0]
+
+    print(left_x2,right_x2)
+
+    xoffset = right_x2 - left_x2
+    yoffset = (height)/2
+
+def detect_one_line(frame,lane_lines):
+    x1,_,x2,_ = lane_lines[0][0]
+    print()
+
+
+
     
 cap = cv2.VideoCapture(0)
 while(cap.isOpened()):
