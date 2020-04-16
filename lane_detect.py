@@ -159,9 +159,9 @@ def detect_two_lines(frame, lane_lines):
     _,_,right_x2,_ = lane_lines[1]
 
     print(left_x2,right_x2)
-
-    xoffset = right_x2 - left_x2
-    yoffset = (height)/2
+    mid = int(width/2)
+    xoffset = (left_x2 + right_x2) / 2 - mid 
+    yoffset = int(height)/2
 
     angle_to_mid_radian = math.atan(xoffset / yoffset)
     angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)
@@ -173,6 +173,8 @@ def detect_two_lines(frame, lane_lines):
 
 def detect_one_line(frame,lane_lines):
     x1,_,x2,_ = lane_lines[0][0]
+    x_offset = x2 - x1
+    y_offset = int(height/2)
     
 
 def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5):
@@ -187,8 +189,8 @@ def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_widt
 	y2 = int(height / 2)
 
 	cv2.line(heading_image, (x1, y1), (x2, y2), line_color, line_width)
-	heading_image = cv2.addWeighted(frame, 0.8, heading_image, 1, 1)
-
+	heading_image = cv2.addWeighted(frame, 0.8, heading_image, 1, 1
+)
 	return heading_image
 
 
