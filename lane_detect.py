@@ -189,9 +189,24 @@ def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_widt
 	y2 = int(height / 2)
 
 	cv2.line(heading_image, (x1, y1), (x2, y2), line_color, line_width)
-	heading_image = cv2.addWeighted(frame, 0.8, heading_image, 1, 1
-)
+	heading_image = cv2.addWeighted(frame, 0.8, heading_image, 1, 1)
+
 	return heading_image
+
+def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lanes=5, max_angle_deviation_one_lane=1):
+
+	if num_of_lane_lines == 2:
+		max_angle_deviation = max_angle_deviation_two_lanes
+	else:
+		max_angle_deviation = max_angle_deviation_one_lane
+
+	angle_deviation = new_steering_angle - curr_steering_angle
+	if abs(angle_deviation) > max_angle_deviation:
+		stabilize_steering_angle = int(curr_steering_angle + max_angle_deviation * angle_deviation / abs(angle_deviation))
+	else:
+		stabilized_steering_angle = new_steering_angle
+
+	return stabilized_steering_angle
 
 
     
