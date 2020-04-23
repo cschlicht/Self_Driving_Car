@@ -4,15 +4,17 @@ import matplotlib.pyplot as plt
 import warnings 
 import time
 import math
+import Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi/server/motor
 
 
+motor.forward()
 
 
 
     
 
        
-#def main():
+#def main():s
 
 
 ##was main but changed 
