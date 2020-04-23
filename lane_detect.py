@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import warnings 
 import time
 import math
-import Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi/server/motor
+
+import Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi
 
 
 motor.forward()
