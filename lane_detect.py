@@ -61,7 +61,7 @@ def Detect_line_segment(cropped_edges):
     max_line_gap = 50
     line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), min_line_length, max_line_gap)
     
-    print(line_segments)
+    
          
     return line_segments
 
@@ -107,7 +107,7 @@ def Avg_slope(line_segments,frame):
     right_fit_avg = np.average(right_fit,axis=0)
     if len(right_fit) > 0:
         lane_lines.append(Make_points(frame,right_fit_avg))
-    print(lane_lines)
+    
 
     return lane_lines
 
@@ -163,7 +163,7 @@ def detect_two_lines(frame, lane_lines):
     _,_,left_x2,_ = lane_lines[0]
     _,_,right_x2,_ = lane_lines[1]
 
-    print(left_x2,right_x2)
+    
     mid = int(width/2)
     xoffset = (left_x2 + right_x2) / 2 - mid 
     yoffset = int(height)/2
