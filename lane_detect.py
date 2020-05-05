@@ -5,10 +5,10 @@ import warnings
 import time
 import math
 
-import Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi
+#import Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi
 
 
-motor.forward()
+#motor.forward()
 
 
 
