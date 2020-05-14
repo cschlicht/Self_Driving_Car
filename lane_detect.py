@@ -55,7 +55,7 @@ def Cut_top_half(edges):
 
 def Detect_line_segment(cropped_edges):
     rho = 1 #distance precision in pixel
-    angle = np.pi / 180 
+    angle = np.pi / 90
     min_threshold = 50 
     min_line_length = 25
     max_line_gap = 50
