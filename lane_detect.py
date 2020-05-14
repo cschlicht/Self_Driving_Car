@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import warnings
 import time
 import math
-
+import RPi.GPIO as GPIO 
+import car_dir_main
 
 # def main():
 
@@ -193,6 +194,29 @@ def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lan
     return stabilized_steering_angle
 
 
+def drive_car(steering_angle):
+
+
+    if not steering_angle:
+        break
+    if steering_angle >= 80 and steering_angle <= 90 :
+        print ("motor moving forward")
+        motor.forward()
+  #  elif data == "Backword":
+    #    print ("recv backward cmd")
+        #motor.backward()
+    elif steering_angle > 0 and steering_angle <= 79:
+        print("car turning left")
+        car_dir.turn_left()
+    elif steering_angle > 90 and steering_angle <= 180:
+        print ("car turning right")
+        car_dir.turn_right()
+    #elif data == "Home":
+      #  print ("recv home cmd")
+        #motor.ctrl(0)
+        #car_dir.home()
+
+
 cap = cv2.VideoCapture(0)
 while (cap.isOpened()):
     _, frame = cap.read()
@@ -212,9 +236,17 @@ while (cap.isOpened()):
 
     cv2.imshow("lane lines", lane_lines_image)
     cv2.imshow("Canny", cropped_edges)
+
+
+    drive_car(steering_angle) #takes in the current steering angle at this frame and interprets what direction it should drive
+
+ 
+
     if cv2.waitKey(1) & 0xFF == ord('q'):
         cap.release()
         cv2.destroyAllWindows()
 
 # if __name__ == "__main__":
 # main()
+
+
