@@ -5,17 +5,17 @@ import warnings
 import time
 import math
 import motor_main as motor
-import car_dir 
+import car_dir as car
 import RPi.GPIO as GPIO
 import PCA9685 as p
 #import Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi
 
 
-if (motor.forward()):
-	print("yes")
 
-
-
+'''
+Function to use to turn
+#car.turn(angle)
+'''
     
 
        
@@ -62,7 +62,7 @@ def Detect_line_segment(cropped_edges):
     angle = np.pi / 180
     min_threshold = 50
     min_line_length = 80
-    max_line_gap = 50
+    max_line_gap = 60
     line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), min_line_length, max_line_gap)
     
     
@@ -216,36 +216,39 @@ def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lan
 		stabilized_steering_angle = new_steering_angle
 
 	return stabilized_steering_angle
+'''
+def car_move(angle):
+	if(angle ):
+
+'''
+def main():  
+	cap = cv2.VideoCapture(0)
+	while(cap.isOpened()):
+	    _,frame = cap.read()
+	    
+	    warnings.simplefilter('ignore', np.RankWarning)
+	    frame = cv2.GaussianBlur(frame, (5, 5), 0)
+	    edges = Detect_Edges(frame)
+	    cropped_edges = Cut_top_half(edges)
+	    line_segments =Detect_line_segment(cropped_edges)
+	    lane_lines =  Avg_slope(line_segments,frame)
+	    lane_lines_image = display_lines(frame,lane_lines)
+	    
+	    steering_angle = detect_two_lines(frame, lane_lines)
+	    heading_image = display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5)
 
 
-    
-cap = cv2.VideoCapture(0)
-while(cap.isOpened()):
-    _,frame = cap.read()
-    
-    warnings.simplefilter('ignore', np.RankWarning)
-    frame = cv2.GaussianBlur(frame, (5, 5), 0)
-    edges = Detect_Edges(frame)
-    cropped_edges = Cut_top_half(edges)
-    line_segments =Detect_line_segment(cropped_edges)
-    lane_lines =  Avg_slope(line_segments,frame)
-    lane_lines_image = display_lines(frame,lane_lines)
-    
-    steering_angle = detect_two_lines(frame, lane_lines)
-    heading_image = display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5)
 
+	    cv2.imshow("heading_image",heading_image)
+	    
+	    cv2.imshow("lane lines", lane_lines_image)
+	    cv2.imshow("Canny",cropped_edges)
+	    if cv2.waitKey(1) & 0xFF == ord('q'):
+	        cap.release()
+	        cv2.destroyAllWindows()
 
-
-    cv2.imshow("heading_image",heading_image)
-    
-    cv2.imshow("lane lines", lane_lines_image)
-    cv2.imshow("Canny",cropped_edges)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        cap.release()
-        cv2.destroyAllWindows()
-
-#if __name__ == "__main__":
-    #main()
+=if __name__ == "__main__":
+    main()
 
 
 
