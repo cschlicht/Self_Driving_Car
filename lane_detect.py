@@ -126,7 +126,7 @@ def Make_points(frame,line_parameters):
     # bound the coordinates within the frame
     x1 = max(-width, min(2 * width, int((y1 - intercept) / slope)))
     x2 = max(-width, min(2 * width, int((y2 - intercept) / slope)))
-    print(x1,x2)
+    print(x1)
     return np.array ([x1,y1,x2,y2])
 
 
