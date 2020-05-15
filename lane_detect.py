@@ -97,19 +97,19 @@ def Avg_slope(line_segments,frame):
         #lines on left postive slope 
         #lines on right have positive slope
 
-        if slope < 0:
-            if x1 < left_boundary and x2 < left_boundary:
+        if (slope < 0):
+            if (x1 < left_boundary and x2 < left_boundary):
                 left_fit.append((slope,intercept))
         else:
-            if x1 > right_boundary and x2 > right_boundary:
+            if (x1 > right_boundary and x2 > right_boundary):
                 right_fit.append((slope,intercept))
 
     left_fit_avg = np.average(left_fit,axis =0)
-    if len(left_fit) > 0:
+    if (len(left_fit) > 0):
         lane_lines.append(Make_points(frame,left_fit_avg))
 
     right_fit_avg = np.average(right_fit,axis=0)
-    if len(right_fit) > 0:
+    if (len(right_fit) > 0):
         lane_lines.append(Make_points(frame,right_fit_avg))
     
 
