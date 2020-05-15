@@ -4,11 +4,15 @@ import matplotlib.pyplot as plt
 import warnings 
 import time
 import math
-
+import motor_main as motor
+import car_dir 
+import RPi.GPIO as GPIO
+import PCA9685 as p
 #import Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi
 
 
-#motor.forward()
+if (motor.forward()):
+	print("yes")
 
 
 
