@@ -105,13 +105,15 @@ def Avg_slope(line_segments,frame):
                 right_fit.append((slope,intercept))
 
     left_fit_avg = np.average(left_fit,axis =0)
+    print(left_fit_avg)
     if (len(left_fit) > 0):
         lane_lines.append(Make_points(frame,left_fit_avg))
 
     right_fit_avg = np.average(right_fit,axis=0)
+    print(right_fit_avg)
     if (len(right_fit) > 0):
         lane_lines.append(Make_points(frame,right_fit_avg))
-    
+    	
 
     return lane_lines
 
@@ -176,7 +178,7 @@ def detect_two_lines(frame, lane_lines):
     angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)
     steering_angle = angle_to_mid_deg + 90
 
-    print(steering_angle)
+    #print(steering_angle)
 
     return steering_angle
 
