@@ -26,7 +26,7 @@ pins = [Motor0_A, Motor0_B, Motor1_A, Motor1_B]
 # ===========================================================================
 def setSpeed(speed):
     speed *= 40
-    print 'speed is: ', speed
+    print ('speed is: ', speed)
     pwm.write(EN_M0, 0, speed)
     pwm.write(EN_M1, 0, speed)
 
@@ -75,7 +75,7 @@ def motor0(x):
         GPIO.output(Motor0_A, GPIO.HIGH)
         GPIO.output(Motor0_B, GPIO.LOW)
     else:
-        print 'Config Error'
+        print('Config Error')
 
 def motor1(x):
     if x == 'True':
