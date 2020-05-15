@@ -105,12 +105,12 @@ def Avg_slope(line_segments,frame):
                 right_fit.append((slope,intercept))
 
     left_fit_avg = np.average(left_fit,axis =0)
-    print(left_fit_avg)
+    #print("left avg",left_fit_avg)
     if (len(left_fit) > 0):
         lane_lines.append(Make_points(frame,left_fit_avg))
 
     right_fit_avg = np.average(right_fit,axis=0)
-    print(right_fit_avg)
+    #print("right avg",right_fit_avg)
     if (len(right_fit) > 0):
         lane_lines.append(Make_points(frame,right_fit_avg))
     	
@@ -126,6 +126,7 @@ def Make_points(frame,line_parameters):
     # bound the coordinates within the frame
     x1 = max(-width, min(2 * width, int((y1 - intercept) / slope)))
     x2 = max(-width, min(2 * width, int((y2 - intercept) / slope)))
+    print(x1,x2)
     return np.array ([x1,y1,x2,y2])
 
 
