@@ -140,6 +140,17 @@ def Avg_slope(line_segments,frame):
     time.sleep(0.5)
     return lane_lines
 
+'''
+Make_points:
+	Parameters:
+		frame            -> 
+		line_parameters  ->
+	Return:
+		np.array         -> 
+
+
+'''
+
 def Make_points(frame,line_parameters):
     height, width, _ = np.shape(frame)
     slope, intercept = line_parameters
@@ -155,7 +166,20 @@ def Make_points(frame,line_parameters):
 
 
 
+'''
 
+Detect_Edges:
+
+
+	Parameters:
+
+
+
+	Return:
+
+
+
+'''
 
 
 def Detect_Edges(frame):
@@ -176,6 +200,18 @@ def Detect_Edges(frame):
     return edges
 
 
+'''
+display_lines:
+	Parameters:
+
+
+	Return:
+
+
+
+'''
+
+
 def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
     line_image = np.zeros_like(frame)
     
@@ -188,6 +224,18 @@ def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
     line_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
 
     return line_image
+
+
+'''
+detect_two_lines:
+	Parameters:
+
+
+	Return:
+
+
+
+'''
 
 def detect_two_lines(frame, lane_lines):
     height, width, _ = np.shape(frame)
@@ -207,10 +255,26 @@ def detect_two_lines(frame, lane_lines):
 
     return steering_angle
 
+'''
+detect_one_line:
+	Parameters:
+
+	Return:
+'''
+
 def detect_one_line(frame,lane_lines):
     x1,_,x2,_ = lane_lines[0][0]
     x_offset = x2 - x1
     y_offset = int(height/2)
+
+
+'''
+display_middle_line:
+	Parameters:
+
+	return:	
+
+'''
     
 
 def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5):
@@ -228,6 +292,12 @@ def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_widt
 	heading_image = cv2.addWeighted(frame, 0.8, heading_image, 1, 1)
 
 	return heading_image
+'''
+stabilize_steering_angle:
+	Parameters:
+
+	Return:
+'''
 
 def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lanes=5, max_angle_deviation_one_lane=1):
 
@@ -248,6 +318,8 @@ def car_move(angle):
 	if(angle ):
 
 '''
+
+
 def main():  
 	cap = cv2.VideoCapture(0)
 	while(cap.isOpened()):
