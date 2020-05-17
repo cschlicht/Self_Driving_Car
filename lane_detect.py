@@ -37,7 +37,16 @@ Function to use to turn
 
         
 
-    
+'''
+
+Cut_top_half:
+	Parameters:
+	edges         -> returned from canny function which detects all edges in the frame
+
+	Return:
+	cropped_edges -> returns the canny image but with the top half cut off to making the bottom half the area of intrest
+
+'''    
 def Cut_top_half(edges):
     height, width = np.shape(edges)
     mask = np.zeros_like(edges)
