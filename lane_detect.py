@@ -38,8 +38,7 @@ Function to use to turn
         
 
 '''
-
-Cut_top_half:
+Cut_top_half: The purpose of this function is to be able to create an area of intrest 
 	Parameters:
 	edges         -> returned from canny function which detects all edges in the frame
 
@@ -63,22 +62,36 @@ def Cut_top_half(edges):
     
 
 
-
     return cropped_edges
 
+'''
+Detect_line_segment: Purpose of this function is to detect all the line segments using HoughlinesP function 
+	Parameters:
+		cropped_edges   -> area of intrest + canny image 
+	Return:
+		line_segments   -> returns the values of all line segments found in the area of intrest
+	
+
+'''
 def Detect_line_segment(cropped_edges):
     rho = 1 #distance precision in pixel
     angle = np.pi / 180
     min_threshold = 50
     min_line_length = 50
-    max_line_gap = 150
+    max_line_gap = 150 
     line_segments = cv2.HoughLinesP(cropped_edges, rho, angle, min_threshold, np.array([]), min_line_length, max_line_gap)
     
     
-         
     return line_segments
 
+'''
+Avg_slope:
+	Parameters:
 
+
+	Return:
+
+'''
 
 def Avg_slope(line_segments,frame):
     #if slope is > 0 then on left
