@@ -35,6 +35,41 @@ Function to use to turn
     #return lane_lines
 
 
+'''
+
+Detect_Edges: This 
+
+
+	Parameters: 
+
+
+
+
+	Return:
+
+
+
+'''
+
+
+def Detect_Edges(frame):
+
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+    
+    lower_blue = np.array([60,40,40])
+    upper_blue = np.array([150, 255, 255])
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    
+    #cv2.imshow('mask',mask)
+
+    edges = cv2.Canny(mask, 200, 400)
+    
+    
+
+    return edges
+
+
         
 
 '''
@@ -165,39 +200,6 @@ def Make_points(frame,line_parameters):
     return np.array ([x1,y1,x2,y2])
 
 
-
-'''
-
-Detect_Edges:
-
-
-	Parameters:
-
-
-
-	Return:
-
-
-
-'''
-
-
-def Detect_Edges(frame):
-
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-
-    
-    lower_blue = np.array([60,40,40])
-    upper_blue = np.array([150, 255, 255])
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
-    
-    #cv2.imshow('mask',mask)
-
-    edges = cv2.Canny(mask, 200, 400)
-    
-    
-
-    return edges
 
 
 '''
