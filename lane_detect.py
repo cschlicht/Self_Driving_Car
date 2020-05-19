@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 import warnings 
 import time
 import math
-#import motor_main as motor
-#import car_dir as car
-#import RPi.GPIO as GPIO
-#import PCA9685 as p
+import motor_main as motor
+import car_dir as car
+import RPi.GPIO as GPIO
+import PCA9685 as p
 #import Sunfounder_Smart_Video_Car_Kit_for_RaspberryPi
 
 
@@ -318,7 +318,7 @@ def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lan
         stabilized_steering_angle = new_steering_angle
 
     return stabilized_steering_angle
-'''
+
 def drive_car(steering_angle):
 
 
@@ -332,15 +332,15 @@ def drive_car(steering_angle):
         #motor.backward()
     elif steering_angle > 0 and steering_angle <= 79:
         print("car turning left")
-        car_dir.turn_left()
+        car.turn_left()
     elif steering_angle > 90 and steering_angle <= 180:
         print ("car turning right")
-        car_dir.turn_right()
+        car.turn_right()
     #elif data == "Home":
       #  print ("recv home cmd")
         #motor.ctrl(0)
         #car_dir.home()
-'''
+
 
 
 def main():  
@@ -365,6 +365,7 @@ def main():
         
         cv2.imshow("lane lines", lane_lines_image)
         cv2.imshow("Canny",cropped_edges)
+        drive_car(steering_angle)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             cap.release()
             cv2.destroyAllWindows()
