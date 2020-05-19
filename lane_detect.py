@@ -175,7 +175,7 @@ def Avg_slope(line_segments,frame):
         lane_lines.append(Make_points(frame,right_fit_avg))
         
     print(lane_lines)
-    time.sleep(0.5)
+    #time.sleep(0.5)
     return lane_lines
 
 '''
@@ -199,7 +199,7 @@ def Make_points(frame,line_parameters):
     x1 = max(-width, min(2 * width, int((y1 - intercept) / slope)))
     x2 = max(-width, min(2 * width, int((y2 - intercept) / slope)))
     print(x1)
-    time.sleep(0.5)
+    #time.sleep(0.5)
     return np.array ([x1,y1,x2,y2])
 
 
