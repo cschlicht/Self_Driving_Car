@@ -318,12 +318,29 @@ def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lan
         stabilized_steering_angle = new_steering_angle
 
     return stabilized_steering_angle
-'''
-def car_move(angle):
-    if(angle ):
-hello world
 
-'''
+def drive_car(steering_angle):
+
+
+    if not steering_angle:
+        break
+    if steering_angle >= 80 and steering_angle <= 90 :
+        print ("motor moving forward")
+        motor.forward()
+  #  elif data == "Backword":
+    #    print ("recv backward cmd")
+        #motor.backward()
+    elif steering_angle > 0 and steering_angle <= 79:
+        print("car turning left")
+        car_dir.turn_left()
+    elif steering_angle > 90 and steering_angle <= 180:
+        print ("car turning right")
+        car_dir.turn_right()
+    #elif data == "Home":
+      #  print ("recv home cmd")
+        #motor.ctrl(0)
+        #car_dir.home()
+
 
 
 def main():  
