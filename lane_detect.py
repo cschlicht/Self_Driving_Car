@@ -198,7 +198,7 @@ def Make_points(frame,line_parameters):
     # bound the coordinates within the frame
     x1 = max(-width, min(2 * width, int((y1 - intercept) / slope)))
     x2 = max(-width, min(2 * width, int((y2 - intercept) / slope)))
-   
+
     #time.sleep(0.5)
     return np.array ([x1,y1,x2,y2])
 
@@ -256,7 +256,7 @@ def detect_two_lines(frame, lane_lines):
     angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)
     steering_angle = angle_to_mid_deg + 90
 
-    #print(steering_angle)
+    print(steering_angle)
 
     return steering_angle
 
