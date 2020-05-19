@@ -146,20 +146,23 @@ def Avg_slope(line_segments,frame):
     right_boundary =  width*bound
 
     for line_segment in line_segments:
-        x1,y1,x2,y2 = line_segment[0]
-        fit = np.polyfit((x1,x2),(y1,y2),1)
-        slope = fit[0]
-        intercept = fit[1]
+    	for x1,y1,x2,y2 in line_segment:
+    		if (x1==x2):
+    			logging.info('skipping vertical line segment (slope=inf): %s' % line_segment)
+	        #x1,y1,x2,y2 = line_segment[0]
+	        fit = np.polyfit((x1,x2),(y1,y2),1)
+	        slope = fit[0]
+	        intercept = fit[1]
 
-        #lines on left postive slope 
-        #lines on right have positive slope
+	        #lines on left postive slope 
+	        #lines on right have positive slope
 
-        if (slope < 0):
-            if (x1 < left_boundary and x2 < left_boundary):
-                left_fit.append((slope,intercept))
-        else:
-            if (x1 > right_boundary and x2 > right_boundary):
-                right_fit.append((slope,intercept))
+	        if (slope < 0):
+	            if (x1 < left_boundary and x2 < left_boundary):
+	                left_fit.append((slope,intercept))
+	        else:
+	            if (x1 > right_boundary and x2 > right_boundary):
+	                right_fit.append((slope,intercept))
 
     left_fit_avg = np.average(left_fit,axis =0)
     #print("left avg",left_fit_avg)
