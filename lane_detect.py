@@ -51,7 +51,8 @@ Detect_Edges: This
 
 
 '''
-
+car.setup()
+motor.setup()
 
 def Detect_Edges(frame):
 
