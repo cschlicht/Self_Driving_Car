@@ -146,7 +146,7 @@ class PWM(object):
         try:
             results = self.bus.read_byte_data(self.address, reg)
             return results
-        except Exception, i:
+        except (Exception, i):
             print (i)
             self._check_i2c()
 
