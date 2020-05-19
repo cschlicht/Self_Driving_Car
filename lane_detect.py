@@ -40,12 +40,12 @@ Function to use to turn
 Detect_Edges: This 
 
 
-	Parameters: 
+    Parameters: 
 
 
 
 
-	Return:
+    Return:
 
 
 
@@ -74,11 +74,11 @@ def Detect_Edges(frame):
 
 '''
 Cut_top_half: The purpose of this function is to be able to create an area of intrest 
-	Parameters:
-	edges         -> returned from canny function which detects all edges in the frame
+    Parameters:
+    edges         -> returned from canny function which detects all edges in the frame
 
-	Return:
-	cropped_edges -> returns the canny image but with the top half cut off to making the bottom half the area of intrest
+    Return:
+    cropped_edges -> returns the canny image but with the top half cut off to making the bottom half the area of intrest
 
 '''    
 def Cut_top_half(edges):
@@ -101,11 +101,11 @@ def Cut_top_half(edges):
 
 '''
 Detect_line_segment: Purpose of this function is to detect all the line segments using HoughlinesP function 
-	Parameters:
-		cropped_edges   -> area of intrest + canny image 
-	Return:
-		line_segments   -> returns the values of all line segments found in the area of intrest
-	
+    Parameters:
+        cropped_edges   -> area of intrest + canny image 
+    Return:
+        line_segments   -> returns the values of all line segments found in the area of intrest
+    
 
 '''
 def Detect_line_segment(cropped_edges):
@@ -121,10 +121,10 @@ def Detect_line_segment(cropped_edges):
 
 '''
 Avg_slope:
-	Parameters:
+    Parameters:
 
 
-	Return:
+    Return:
 
 '''
 
@@ -146,23 +146,23 @@ def Avg_slope(line_segments,frame):
     right_boundary =  width*bound
 
     for line_segment in line_segments:
-    	for x1,y1,x2,y2 in line_segment:
-    		if (x1==x2):
-    			logging.info('skipping vertical line segment (slope=inf): %s' % line_segment)
-	        #x1,y1,x2,y2 = line_segment[0]
-	        fit = np.polyfit((x1,x2),(y1,y2),1)
-	        slope = fit[0]
-	        intercept = fit[1]
+        for x1,y1,x2,y2 in line_segment:
+            if (x1==x2):
+                logging.info('skipping vertical line segment (slope=inf): %s' % line_segment)
+            #x1,y1,x2,y2 = line_segment[0]
+            fit = np.polyfit((x1,x2),(y1,y2),1)
+            slope = fit[0]
+            intercept = fit[1]
 
-	        #lines on left postive slope 
-	        #lines on right have positive slope
+            #lines on left postive slope 
+            #lines on right have positive slope
 
-	        if (slope < 0):
-	            if (x1 < left_boundary and x2 < left_boundary):
-	                left_fit.append((slope,intercept))
-	        else:
-	            if (x1 > right_boundary and x2 > right_boundary):
-	                right_fit.append((slope,intercept))
+            if (slope < 0):
+                if (x1 < left_boundary and x2 < left_boundary):
+                    left_fit.append((slope,intercept))
+            else:
+                if (x1 > right_boundary and x2 > right_boundary):
+                    right_fit.append((slope,intercept))
 
     left_fit_avg = np.average(left_fit,axis =0)
     #print("left avg",left_fit_avg)
@@ -173,18 +173,18 @@ def Avg_slope(line_segments,frame):
     #print("right avg",right_fit_avg)
     if (len(right_fit) > 0):
         lane_lines.append(Make_points(frame,right_fit_avg))
-    	
+        
     print(lane_lines)
     time.sleep(0.5)
     return lane_lines
 
 '''
 Make_points:
-	Parameters:
-		frame            -> 
-		line_parameters  ->
-	Return:
-		np.array         -> 
+    Parameters:
+        frame            -> 
+        line_parameters  ->
+    Return:
+        np.array         -> 
 
 
 '''
@@ -207,10 +207,10 @@ def Make_points(frame,line_parameters):
 
 '''
 display_lines:
-	Parameters:
+    Parameters:
 
 
-	Return:
+    Return:
 
 
 
@@ -233,10 +233,10 @@ def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
 
 '''
 detect_two_lines:
-	Parameters:
+    Parameters:
 
 
-	Return:
+    Return:
 
 
 
@@ -262,9 +262,9 @@ def detect_two_lines(frame, lane_lines):
 
 '''
 detect_one_line:
-	Parameters:
+    Parameters:
 
-	Return:
+    Return:
 '''
 
 def detect_one_line(frame,lane_lines):
@@ -275,82 +275,82 @@ def detect_one_line(frame,lane_lines):
 
 '''
 display_middle_line:
-	Parameters:
+    Parameters:
 
-	return:	
+    return: 
 
 '''
     
 
 def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5):
-	heading_image = np.zeros_like(frame)
-	height, width, _  = np.shape(frame)
+    heading_image = np.zeros_like(frame)
+    height, width, _  = np.shape(frame)
 
 
-	steering_angle_radian = steering_angle/180.0 * math.pi
-	x1 = int(width / 2)
-	y1 = height
-	x2 = int(x1 - height / 2 / math.tan(steering_angle_radian))
-	y2 = int(height / 2)
+    steering_angle_radian = steering_angle/180.0 * math.pi
+    x1 = int(width / 2)
+    y1 = height
+    x2 = int(x1 - height / 2 / math.tan(steering_angle_radian))
+    y2 = int(height / 2)
 
-	cv2.line(heading_image, (x1, y1), (x2, y2), line_color, line_width)
-	heading_image = cv2.addWeighted(frame, 0.8, heading_image, 1, 1)
+    cv2.line(heading_image, (x1, y1), (x2, y2), line_color, line_width)
+    heading_image = cv2.addWeighted(frame, 0.8, heading_image, 1, 1)
 
-	return heading_image
+    return heading_image
 '''
 stabilize_steering_angle:
-	Parameters:
+    Parameters:
 
-	Return:
+    Return:
 '''
 
 def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lanes=5, max_angle_deviation_one_lane=1):
 
-	if num_of_lane_lines == 2:
-		max_angle_deviation = max_angle_deviation_two_lanes
-	else:
-		max_angle_deviation = max_angle_deviation_one_lane
+    if num_of_lane_lines == 2:
+        max_angle_deviation = max_angle_deviation_two_lanes
+    else:
+        max_angle_deviation = max_angle_deviation_one_lane
 
-	angle_deviation = new_steering_angle - curr_steering_angle
-	if abs(angle_deviation) > max_angle_deviation:
-		stabilize_steering_angle = int(curr_steering_angle + max_angle_deviation * angle_deviation / abs(angle_deviation))
-	else:
-		stabilized_steering_angle = new_steering_angle
+    angle_deviation = new_steering_angle - curr_steering_angle
+    if abs(angle_deviation) > max_angle_deviation:
+        stabilize_steering_angle = int(curr_steering_angle + max_angle_deviation * angle_deviation / abs(angle_deviation))
+    else:
+        stabilized_steering_angle = new_steering_angle
 
-	return stabilized_steering_angle
+    return stabilized_steering_angle
 '''
 def car_move(angle):
-	if(angle ):
+    if(angle ):
 hello world
 
 '''
 
 
 def main():  
-	cap = cv2.VideoCapture(0)
-	while(cap.isOpened()):
-	    _,frame = cap.read()
-	    
-	    warnings.simplefilter('ignore', np.RankWarning)
-	    frame = cv2.GaussianBlur(frame, (5, 5), 0)
-	    edges = Detect_Edges(frame)
-	    cropped_edges = Cut_top_half(edges)
-	    line_segments =Detect_line_segment(cropped_edges)
-	    lane_lines =  Avg_slope(line_segments,frame)
-	    lane_lines_image = display_lines(frame,lane_lines)
-	    
-	    steering_angle = detect_two_lines(frame, lane_lines)
-	    heading_image = display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5)
+    cap = cv2.VideoCapture(0)
+    while(cap.isOpened()):
+        _,frame = cap.read()
+        
+        warnings.simplefilter('ignore', np.RankWarning)
+        frame = cv2.GaussianBlur(frame, (5, 5), 0)
+        edges = Detect_Edges(frame)
+        cropped_edges = Cut_top_half(edges)
+        line_segments =Detect_line_segment(cropped_edges)
+        lane_lines =  Avg_slope(line_segments,frame)
+        lane_lines_image = display_lines(frame,lane_lines)
+        
+        steering_angle = detect_two_lines(frame, lane_lines)
+        heading_image = display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5)
 
 
 
-	    cv2.imshow("heading_image",heading_image)
-	    
-	    cv2.imshow("lane lines", lane_lines_image)
-	    cv2.imshow("Canny",cropped_edges)
-	    if cv2.waitKey(1) & 0xFF == ord('q'):
-	        cap.release()
-	        cv2.destroyAllWindows()
+        cv2.imshow("heading_image",heading_image)
+        
+        cv2.imshow("lane lines", lane_lines_image)
+        cv2.imshow("Canny",cropped_edges)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            cap.release()
+            cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     main()
