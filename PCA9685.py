@@ -135,7 +135,7 @@ class PWM(object):
             print (self._DEBUG_INFO, 'Writing value %2X to %2X' % (value, reg))
         try:
             self.bus.write_byte_data(self.address, reg, value)
-        except Exception, i:
+        except (Exception, i):
             print (i)
             self._check_i2c()
 
