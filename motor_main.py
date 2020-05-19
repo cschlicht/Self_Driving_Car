@@ -139,7 +139,7 @@ def test():
 if __name__ == '__main__':
     setup()
     setSpeed(50)
-    #forward()
-    #backward()
+    forward()
+    backward()
     stop()
 
