@@ -318,9 +318,9 @@ def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lan
         stabilized_steering_angle = new_steering_angle
 
     return stabilized_steering_angle
-
-def drive_car(steering_angle):
 '''
+def drive_car(steering_angle):
+
 
     if not steering_angle:
         break
