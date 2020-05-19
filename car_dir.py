@@ -21,6 +21,7 @@ def setup(busnum=None):
 	homePWM += offset
 	rightPWM += offset
 	if busnum == None:
+		print("coke")
 		pwm = servo.PWM()                  # Initialize the servo controller.
 	else:
 		pwm = servo.PWM(bus_number=busnum) # Initialize the servo controller.
