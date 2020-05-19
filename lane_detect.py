@@ -324,6 +324,7 @@ def drive_car(steering_angle):
 
     if steering_angle is None:
         logging.info('no steering_angle')
+        continue 
     if steering_angle >= 80 and steering_angle <= 90 :
         print ("motor moving forward")
         motor.forward()
