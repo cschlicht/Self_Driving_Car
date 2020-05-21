@@ -357,19 +357,19 @@ def main():
         frame = cv2.GaussianBlur(frame, (5, 5), 0)
         edges = Detect_Edges(frame)
         cropped_edges = Cut_top_half(edges)
-        '''
+        
         line_segments =Detect_line_segment(cropped_edges)
         lane_lines =  Avg_slope(line_segments,frame)
         lane_lines_image = display_lines(frame,lane_lines)
         
         steering_angle = detect_two_lines(frame, lane_lines)
         heading_image = display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5)
-         '''
-
-
-        #cv2.imshow("heading_image",heading_image)
         
-        #cv2.imshow("lane lines", lane_lines_image)
+
+
+        cv2.imshow("heading_image",heading_image)
+        
+        cv2.imshow("lane lines", lane_lines_image)
         cv2.imshow("Canny",cropped_edges)
         plt.imshow(cropped_edges)
         plt.show()
