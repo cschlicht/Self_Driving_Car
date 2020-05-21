@@ -243,7 +243,7 @@ detect_two_lines:
 
 
 '''
-
+'''
 def detect_two_lines(frame, lane_lines):
     height, width, _ = np.shape(frame)
     _,_,left_x2,_ = lane_lines[0]
@@ -343,7 +343,7 @@ def drive_car(steering_angle):
         #motor.ctrl(0)
         #car_dir.home()
 
-
+'''
 
 def main():  
     cap = cv2.VideoCapture(0)
