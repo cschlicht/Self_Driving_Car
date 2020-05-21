@@ -365,7 +365,7 @@ def main():
         
         #cv2.imshow("lane lines", lane_lines_image)
         cv2.imshow("Canny",cropped_edges)
-        drive_car(steering_angle)
+        #drive_car(steering_angle)
         time.sleep(1)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             cap.release()
