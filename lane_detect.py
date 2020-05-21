@@ -88,8 +88,8 @@ def Cut_top_half(edges):
     mask = np.zeros_like(edges)
 
 
-    #delete top hald of screen 
-    poly = np.array ([[(0,height*1/2),(width,height*1/2),(width,height),(0,height)]],np.int32)
+    #create point of intrest as a triangle 
+    poly = np.array ([[(200,height),(1100,height),(550,250),(550,250)]],np.int32)
 
     #fill array poly with mask 
     cv2.fillPoly(mask, poly, 255)
