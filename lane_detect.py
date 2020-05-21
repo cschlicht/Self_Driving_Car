@@ -341,7 +341,6 @@ def drive_car(steering_angle):
         #motor.ctrl(0)
         #car_dir.home()
 
-'''
 
 def main():  
     cap = cv2.VideoCapture(0)
