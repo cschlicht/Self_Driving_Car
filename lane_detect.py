@@ -367,11 +367,11 @@ def main():
         
 
 
-        cv2.imshow("heading_image",heading_image)
+        #cv2.imshow("heading_image",heading_image)
         
         cv2.imshow("lane lines", lane_lines_image)
         cv2.imshow("Canny",cropped_edges)
-        plt.imshow(cropped_edges)
+        #plt.imshow(cropped_edges)
         #plt.show()
         #drive_car(steering_angle)
         time.sleep(1)
