@@ -378,7 +378,7 @@ def main():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             cap.release()
             cv2.destroyAllWindows()
-            plt.
+            
 
 if __name__ == "__main__":
     main()
