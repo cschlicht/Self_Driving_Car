@@ -377,7 +377,7 @@ def main():
         _,frame = cap.read()
         
         warnings.simplefilter('ignore', np.RankWarning)
-        frame = cv2.GaussianBlur(frame, (5, 5), 0)
+       #frame = cv2.GaussianBlur(frame, (5, 5), 0)
         edges = Detect_Edges(frame)
         cropped_edges = Cut_top_half(edges)
         
