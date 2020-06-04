@@ -69,6 +69,7 @@ def setup(busnum=None):
 # ===========================================================================
 
 def motor0(x):
+    print(x)
     if x == 'True':
         GPIO.output(Motor0_A, GPIO.LOW)
         GPIO.output(Motor0_B, GPIO.HIGH)
