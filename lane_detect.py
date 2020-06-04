@@ -189,10 +189,10 @@ def Avg_slope(line_segments,frame):
 '''
 Make_points:
     Parameters:
-        frame            -> 
-        line_parameters  ->
+        frame            ->  is each individual frame caprtured from the video 
+        line_parameters  ->  this is the line that will be inputed to find it coordinates 
     Return:
-        np.array         -> 
+        np.array         ->  returns a X1,Y1,X2,Y2 value from the line that was given 
 
 
 '''
@@ -217,8 +217,15 @@ def Make_points(frame,line_parameters):
 display_lines:
     Parameters:
 
+    frame      -> 
+    lines       -> 
+    line_color  ->
+    line_width  ->
+
 
     Return:
+
+    line_image  -> 
 
 
 
@@ -242,9 +249,13 @@ def display_lines(frame,lines,line_color=(0, 255, 0), line_width=10):
 '''
 detect_two_lines:
     Parameters:
+ 
+    frame          -> 
+    lane_lines     -> 
 
 
     Return:
+    steering_angle -> 
 
 
 '''
@@ -283,7 +294,13 @@ def detect_one_line(frame,lane_lines):
 display_middle_line:
     Parameters:
 
+    frame          -> 
+    steering_angle -> 
+
+
     return: 
+
+    heading_image -> 
 
 '''
     
@@ -307,7 +324,13 @@ def display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_widt
 stabilize_steering_angle:
     Parameters:
 
+    frame          -> 
+    steering_angle -> 
+
+
     Return:
+
+    heading_image -> 
 '''
 
 def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lane_lines, max_angle_deviation_two_lanes=5, max_angle_deviation_one_lane=1):
@@ -366,7 +389,7 @@ def main():
         heading_image = display_middle_line(frame, steering_angle, line_color=(0, 0, 255), line_width=5)
         
 
-
+        
         #cv2.imshow("heading_image",heading_image)
         
         cv2.imshow("lane lines", lane_lines_image)
