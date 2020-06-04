@@ -80,12 +80,14 @@ def motor0(x):
         print('Config Error')
 
 def motor1(x):
+    '''
     if x == 'True':
         GPIO.output(Motor1_A, GPIO.LOW)
         GPIO.output(Motor1_B, GPIO.HIGH)
     elif x == 'False':
-        GPIO.output(Motor1_A, GPIO.HIGH)
-        GPIO.output(Motor1_B, GPIO.LOW)
+    '''
+    GPIO.output(Motor1_A, GPIO.HIGH)
+    GPIO.output(Motor1_B, GPIO.LOW)
 
 def forward():
     motor0(forward0)
