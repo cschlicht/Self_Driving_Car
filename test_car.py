@@ -15,4 +15,4 @@ car.setup()
 motor.setup()
 
 
-motor.home()
+motor.test()
