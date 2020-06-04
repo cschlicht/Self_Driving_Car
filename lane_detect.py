@@ -156,7 +156,8 @@ def Avg_slope(line_segments,frame):
     for line_segment in line_segments:
         for x1,y1,x2,y2 in line_segment:
             if (x1==x2):
-                logging.info('skipping vertical line segment (slope=inf): %s' % line_segment)
+                #logging.info('skipping vertical line segment (slope=inf): %s' % line_segment)
+                return 'not found'
             #x1,y1,x2,y2 = line_segment[0]
             fit = np.polyfit((x1,x2),(y1,y2),1)
             slope = fit[0]
