@@ -370,7 +370,7 @@ def drive_car(steering_angle):
       #  print ("recv home cmd")
         #motor.ctrl(0)
         #car_dir.home()
-
+    motor.home()
 
 def main():  
     cap = cv2.VideoCapture(0)
