@@ -354,13 +354,11 @@ def drive_car(steering_angle):
     if steering_angle is None:
         print('no angle found')
         return 0 
-    if steering_angle >= 80 and steering_angle <= 90 :
+    if steering_angle == 90 :
         print ("motor moving forward")
         motor.forward()
-  #  elif data == "Backword":
-    #    print ("recv backward cmd")
-        #motor.backward()
-    elif steering_angle > 0 and steering_angle <= 79:
+
+    elif steering_angle > 0 and steering_angle <= 89:
         print("car turning left")
         car.turn_left()
     elif steering_angle > 90 and steering_angle <= 180:
@@ -397,7 +395,7 @@ def main():
         cv2.imshow("Canny",cropped_edges)
         #plt.imshow(cropped_edges)
         #plt.show()
-        #drive_car(steering_angle)
+        drive_car(steering_angle)
         time.sleep(1)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             cap.release()
