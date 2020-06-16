@@ -138,11 +138,12 @@ def test():
         setSpeed(100)
         time.sleep(3)
         ctrl(0)
-
+test()
+'''
 if __name__ == '__main__':
     setup()
     setSpeed(50)
     forward()
     backward()
     stop()
-
+'''
