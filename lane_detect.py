@@ -350,7 +350,7 @@ def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lan
     return stabilized_steering_angle
 
 def drive_car(steering_angle):
-
+ 
     if steering_angle is None:
         print('no angle found')
         return 0 
@@ -360,17 +360,24 @@ def drive_car(steering_angle):
 
     elif steering_angle > 0 and steering_angle <= 89:
         print("car turning left")
-        car.turn_right()
+         car.turn(steering_angle)
         #car.turn_left()
     elif steering_angle > 90 and steering_angle <= 180:
         print ("car turning right")
-        car.turn_left()
+         car.turn(steering_angle)
         #car.turn_right()
     #elif data == "Home":
       #  print ("recv home cmd")
         #motor.ctrl(0)
         #car_dir.home()
-    car.home()
+    #car.home()
+
+
+    
+
+
+       
+
 
 def main():  
     cap = cv2.VideoCapture(0)
