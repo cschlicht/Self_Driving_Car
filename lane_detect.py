@@ -365,7 +365,7 @@ def drive_car(steering_angle):
         #car.turn_left()
     elif steering_angle > 90 and steering_angle <= 180:
         print ("car turning right")
-         car.turn(steering_angle)
+        car.turn(steering_angle)
         #car.turn_right()
     #elif data == "Home":
       #  print ("recv home cmd")
