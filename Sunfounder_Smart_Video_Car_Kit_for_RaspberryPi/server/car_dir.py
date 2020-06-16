@@ -47,7 +47,7 @@ def turn_right():
 
 def turn(angle):
 	angle = Map(angle, 0, 255, leftPWM, rightPWM)
-	pwm.write(0, 0, angle)
+	pwm.write(0, 0, int(angle))
 
 def home():
 	global homePWM
@@ -69,6 +69,6 @@ def test():
 if __name__ == '__main__':
 	setup()
 	home()
-	print(turn(10))
+
 
 
