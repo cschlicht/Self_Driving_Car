@@ -88,6 +88,7 @@ def motor1(x):
         GPIO.output(Motor1_B, GPIO.LOW)
 
 def forward():
+    print(forward0,forward1)
     motor0(forward0)
     motor1(forward1)
 
