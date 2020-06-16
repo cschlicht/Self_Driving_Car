@@ -356,6 +356,7 @@ def drive_car(steering_angle):
         return 0 
     if steering_angle == 90 :
         print ("motor moving forward")
+        car.home()
         motor.forward()
 
     elif steering_angle > 0 and steering_angle <= 89:
