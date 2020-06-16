@@ -350,6 +350,7 @@ def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lan
     return stabilized_steering_angle
 
 def drive_car(steering_angle):
+     motor.forward()
  
     if steering_angle is None:
         print('no angle found')
@@ -357,7 +358,7 @@ def drive_car(steering_angle):
     if steering_angle == 90 :
         print ("motor moving forward")
         car.home()
-        motor.forward()
+       
 
     elif steering_angle > 0 and steering_angle <= 89:
         print("car turning left")
