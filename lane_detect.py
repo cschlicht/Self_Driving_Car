@@ -350,7 +350,7 @@ def stabilize_steering_angle(curr_steering_angle, new_steering_angle, num_of_lan
     return stabilized_steering_angle
 
 def drive_car(steering_angle):
-     motor.forward()
+    motor.forward()
  
     if steering_angle is None:
         print('no angle found')
