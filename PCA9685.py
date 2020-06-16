@@ -224,6 +224,7 @@ class PWM(object):
         '''Set on and off value on specific channel'''
         if self._DEBUG:
             print (self._DEBUG_INFO, 'Set channel "%d" to value "%d"' % (channel, off))
+        print(off)
         self._write_byte_data(self._LED0_ON_L+4*channel, on & 0xFF)
         self._write_byte_data(self._LED0_ON_H+4*channel, on >> 8)
         self._write_byte_data(self._LED0_OFF_L+4*channel, off & 0xFF)

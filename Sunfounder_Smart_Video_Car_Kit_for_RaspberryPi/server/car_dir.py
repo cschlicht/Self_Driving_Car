@@ -3,7 +3,7 @@ import PCA9685 as servo
 import time                # Import necessary modules
 
 def Map(x, in_min, in_max, out_min, out_max):
-	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+	return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 
 def setup(busnum=None):
 	global leftPWM, rightPWM, homePWM, pwm
